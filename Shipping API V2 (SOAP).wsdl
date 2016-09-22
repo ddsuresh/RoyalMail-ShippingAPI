@@ -1,0 +1,2731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="shippingAPI" targetNamespace="http://www.royalmailgroup.com/api/ship/V2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.royalmailgroup.com/api/ship/V2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" xmlns:ns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <wsdl:documentation>Version: 2.0.9</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.royalmailgroup.com/WSDLapi/ship/V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.royalmailgroup.com/WSDLapi/ship/V1">
+            <xs:import namespace="http://www.royalmailgroup.com/api/ship/V2"/>
+            <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+        </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.royalmailgroup.com/api/ship/V2" version="2.0.9" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapext="http://www.royalmailgroup.com/soap/extensions/V1" xmlns:rd="http://www.royalmailgroup.com/cm/referenceData/V3" xmlns:ns="http://www.royalmailgroup.com/api/ship/V2" xmlns:int="http://www.royalmailgroup.com/integration/core/V1" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1" xmlns:com="http://www.royalmailgroup.com/cm/common/V4">
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/common/V4"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/referenceData/V3"/>
+    <xs:import namespace="http://www.royalmailgroup.com/soap/extensions/V1"/>
+    <xs:element name="createShipmentRequest" type="ns:createShipmentRequest">
+        <xs:annotation>
+            <xs:documentation>request to create a domestic shipment</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="createShipmentResponse" type="ns:createShipmentResponse">
+        <xs:annotation>
+            <xs:documentation>response to creating a domestic shipment</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="printLabelRequest" type="ns:printLabelRequest">
+        <xs:annotation>
+            <xs:documentation>request to provide a label for one or more shipments</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="printLabelResponse" type="ns:printLabelResponse">
+        <xs:annotation>
+            <xs:documentation>response to print label request returning label <label/>
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="updateShipmentRequest" type="ns:updateShipmentRequest">
+        <xs:annotation>
+            <xs:documentation>request to update details for a single shipment</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="updateShipmentResponse" type="ns:updateShipmentResponse">
+        <xs:annotation>
+            <xs:documentation>response to request to update details for a single shipment</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="createManifestRequest" type="ns:createManifestRequest">
+        <xs:annotation>
+            <xs:documentation>request to create a manifest for items with a status of printed.  It is possible to create a manifest for </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="createManifestResponse" type="ns:createManifestResponse">
+        <xs:annotation>
+            <xs:documentation>response to provide a manifest of shipments with a status of printed</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="printManifestRequest" type="ns:printManifestRequest">
+        <xs:annotation>
+            <xs:documentation>request to print previously created manifest by Batch Number or Sales Order Number</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="printManifestResponse" type="ns:printManifestResponse">
+        <xs:annotation>
+            <xs:documentation>response to print manifest request returning manifest</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="cancelShipmentRequest" type="ns:cancelShipmentRequest">
+        <xs:annotation>
+            <xs:documentation>request to cancel one or more shipments</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="cancelShipmentResponse" type="ns:cancelShipmentResponse">
+        <xs:annotation>
+            <xs:documentation>response to request to cancel one or more shipments</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="printDocumentRequest" type="ns:printDocumentRequest">
+        <xs:annotation>
+            <xs:documentation>request to provide an International document for one or more shipments</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="printDocumentResponse" type="ns:printDocumentResponse">
+        <xs:annotation>
+            <xs:documentation>response to print International document request returning document</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="request1DRangesRequest" type="ns:request1DRangesRequest">
+        <xs:annotation>
+            <xs:documentation>request to obtain one or more ranges of 1D barcodes for a service occurrence, service offering, service enhancement combination</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="request1DRangesResponse" type="ns:request1DRangesResponse">
+        <xs:annotation>
+            <xs:documentation>response to request range of 1D barcode ranges</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="request2DItemIDRangeRequest" type="ns:request2DItemIDRangeRequest">
+        <xs:annotation>
+            <xs:documentation>request to obtain a range of 2D ItemIDs for use in 2D Matrix</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="request2DItemIDRangeResponse" type="ns:request2DItemIDRangeResponse">
+        <xs:annotation>
+            <xs:documentation>response to request a range of 2D ItemIDs</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="baseRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold static elements in ComplexContents</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="createShipmentRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for createShipment operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element name="requestedShipment" type="ns:requestedShipment"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="createShipmentResponse">
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="completedShipmentInfo" type="ns:completedShipmentInfo"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="requestedShipment">
+        <xs:annotation>
+            <xs:documentation>schema to hold the details for the shipment</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="shipmentType" type="rd:referenceDataType"/>
+            <xs:element minOccurs="0" name="serviceOccurrence" type="dt:ordinal"/>
+            <xs:element minOccurs="0" name="serviceType" type="rd:referenceDataType"/>
+            <xs:element minOccurs="0" name="serviceOffering" type="rd:serviceOfferingType"/>
+            <xs:element minOccurs="0" name="serviceFormat" type="rd:serviceFormatType"/>
+            <xs:element minOccurs="0" name="bfpoFormat" type="rd:bFPOFormatType"/>
+            <xs:element minOccurs="0" name="serviceEnhancements" type="ns:serviceEnhancements"/>
+            <xs:element minOccurs="0" name="signature" type="dt:boolean"/>
+            <xs:element minOccurs="0" name="shippingDate" type="dt:date"/>
+            <xs:element minOccurs="0" name="recipientContact" type="ns:contact"/>
+            <xs:element minOccurs="0" name="recipientAddress" type="com:address"/>
+            <xs:element minOccurs="0" name="items" type="ns:items"/>
+            <xs:element minOccurs="0" name="departmentReference" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="customerReference" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="senderReference" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="safePlace" type="dt:comment"/>
+            <xs:element minOccurs="0" name="importerContact" type="ns:contact">
+                <xs:annotation>
+                    <xs:documentation>schema to hold contact details of importer</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="importerAddress" type="com:address">
+                <xs:annotation>
+                    <xs:documentation>schema to hold address of importer</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="exporterContact" type="ns:contact">
+                <xs:annotation>
+                    <xs:documentation>schema to hold contact details of exporter</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="exporterAddress" type="com:address">
+                <xs:annotation>
+                    <xs:documentation>schema to hold address of exporter</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="internationalInfo" type="ns:internationalInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="internationalInfo">
+        <xs:annotation>
+            <xs:documentation>Only for international shipments</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="parcels" type="ns:parcels"/>
+            <xs:element minOccurs="0" name="shipperExporterVatNo" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="recipientImporterVatNo" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="originalExportShipmentNo" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="documentsOnly" type="dt:boolean"/>
+            <xs:element minOccurs="0" name="documentsDescription" type="dt:shortDescription"/>
+            <xs:element minOccurs="0" name="shipmentDescription" type="dt:shortDescription"/>
+            <xs:element minOccurs="0" name="comments" type="dt:longDescription"/>
+            <xs:element minOccurs="0" name="invoiceDate" type="dt:date"/>
+            <xs:element minOccurs="0" name="termsOfDelivery" type="dt:longDescription"/>
+            <xs:element minOccurs="0" name="purchaseOrderRef" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="parcels">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of single parcel structures</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="parcel" type="ns:parcel"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="parcel">
+        <xs:annotation>
+            <xs:documentation>schema to hold details of a single parcel</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="weight" type="com:dimension"/>
+            <xs:element minOccurs="0" name="length" type="com:dimension"/>
+            <xs:element minOccurs="0" name="height" type="com:dimension"/>
+            <xs:element minOccurs="0" name="width" type="com:dimension"/>
+            <xs:element minOccurs="0" name="purposeOfShipment" type="rd:referenceDataType"/>
+            <xs:element minOccurs="0" name="explanation" type="dt:description"/>
+            <xs:element minOccurs="0" name="invoiceNumber" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="exportLicenseNumber" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="certificateNumber" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="contentDetails" type="ns:contentDetails"/>
+            <xs:element minOccurs="0" name="fees" type="dt:decimal"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="offlineShipments" type="ns:shipment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="contentDetails">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of single parcel structures</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="contentDetail" type="ns:contentDetail"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="contentDetail">
+        <xs:annotation>
+            <xs:documentation>schema to hold details of a parcel contents</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="countryOfManufacture" type="rd:countryType"/>
+            <xs:element minOccurs="0" name="manufacturersName" type="dt:identifier"/>
+            <xs:element name="description" type="dt:shortDescription"/>
+            <xs:element name="unitWeight" type="com:dimension"/>
+            <xs:element name="unitQuantity" type="dt:integer"/>
+            <xs:element name="unitValue" type="dt:decimal"/>
+            <xs:element minOccurs="0" name="currencyCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Currency code is used to indicate the system of money (monetary units) in common use within a nation. Under this definition, British pounds, U.S. dollars, and European euros are different types of currency, or currencies. Currencies in the sense used by foreign exchange markets, are defined by governments, and each type has limited boundaries of acceptance.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="tariffCode" type="rd:referenceDataType"/>
+            <xs:element minOccurs="0" name="tariffDescription" type="rd:referenceDataType"/>
+            <xs:element minOccurs="0" name="articleReference" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="complementaryName" type="dt:longName">
+        <xs:annotation>
+            <xs:documentation>element to hold alternative or alias for business name</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="contact">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="name" type="dt:longName"/>
+            <xs:element minOccurs="0" ref="ns:complementaryName"/>
+            <xs:element minOccurs="0" name="telephoneNumber" type="com:telephoneNumber"/>
+            <xs:element minOccurs="0" name="electronicAddress" type="com:digitalAddress"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="serviceEnhancements">
+        <xs:annotation>
+            <xs:documentation>schema to hold service enhancements</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="enhancementType" type="rd:serviceEnhancementType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="items">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of single item structures</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="item" type="ns:item"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="item">
+        <xs:annotation>
+            <xs:documentation>schema to hold quantity and weight of items</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="numberOfItems" type="dt:cardinal"/>
+            <xs:element minOccurs="1" name="weight" type="com:dimension"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="offlineShipments" type="ns:shipment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="shipment">
+        <xs:annotation>
+            <xs:documentation>schema to hold an details of a shipment including 1D barcode and ItemID references</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="shipmentNumber" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="itemID" type="dt:identifier"/>
+            <xs:element name="status" type="com:status"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completedShipmentInfo">
+        <xs:annotation>
+            <xs:documentation>schema to hold details of the response to created shipments</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="status" type="com:status"/>
+            <xs:element name="allCompletedShipments" type="ns:allCompletedShipments"/>
+            <xs:element name="requestedShipment" type="ns:requestedShipment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="allCompletedShipments">
+        <xs:annotation>
+            <xs:documentation>schema containing the choice of 1D or 2D structures</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="completedShipments" type="ns:completedShipments"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completedShipments">
+        <xs:annotation>
+            <xs:documentation>schema to hold the details for 1D barcoded items</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="weight" type="com:dimension"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="shipments" type="ns:shipments"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="shipments">
+        <xs:annotation>
+            <xs:documentation>schema to hold an array of shipment numbers</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="99" minOccurs="0" name="shipmentNumber" type="dt:identifier"/>
+            <xs:element maxOccurs="99" name="shipment" type="ns:shipment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="printLabelRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for printLabel operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="shipmentNumber" type="dt:identifier"/>
+                    <xs:element minOccurs="0" name="outputFormat" type="dt:identifier"/>
+                    <xs:element minOccurs="0" name="localisedAddress" type="ns:localisedAddress"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="localisedAddress">
+        <xs:annotation>
+            <xs:documentation>schema to hold native address and contact details for non-English countries</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recipientContact" type="ns:contact"/>
+            <xs:element minOccurs="0" name="recipientAddress" type="com:address"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="printLabelResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for printLabel operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="label" type="dt:document"/>
+            <xs:element minOccurs="0" name="labelImages" type="ns:labelImages"/>
+            <xs:element minOccurs="0" name="labelData" type="ns:labelData"/>
+            <xs:element minOccurs="0" name="outputFormat" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="labelImages">
+        <xs:annotation>
+            <xs:documentation>schema to hold an array of shipment numbers</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="image1DBarcode" type="dt:document"/>
+            <xs:element name="image2DMatrix" type="dt:twoDBarcode"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="labelData">
+        <xs:annotation>
+            <xs:documentation>schema to hold details for the 2D Data Matrix</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="upuCode" type="dt:identifier"/>
+            <xs:element name="informationTypeID" type="dt:identifier"/>
+            <xs:element name="versionID" type="dt:integer"/>
+            <xs:element name="format" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="class" type="dt:identifier"/>
+            <xs:element name="mailType" type="dt:identifier"/>
+            <xs:element name="itemID" type="dt:identifier"/>
+            <xs:element name="checkDigit" type="dt:integer"/>
+            <xs:element name="itemWeight" type="dt:integer"/>
+            <xs:element name="weightType" type="dt:identifier"/>
+            <xs:element name="product" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="typeOfItem" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="trackingNumber" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="destinationPostcodeDPS" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="returnToSenderPostcode" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="requiredAtDelivery" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="reservedBIV" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="reservedBIVK" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="spareCapacity" type="dt:shortDescription"/>
+            <xs:element minOccurs="0" name="buildingNumber" type="dt:integer"/>
+            <xs:element minOccurs="0" name="buildingName" type="dt:name"/>
+            <xs:element name="dateOfShipment" type="dt:date"/>
+            <xs:element minOccurs="0" name="recipientContact" type="ns:contact"/>
+            <xs:element minOccurs="0" name="recipientAddress" type="com:address"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="createManifestRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for createManifest operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="serviceOccurrence" type="dt:ordinal"/>
+                    <xs:element minOccurs="0" name="serviceOffering" type="rd:serviceOfferingType"/>
+                    <xs:element minOccurs="0" name="yourDescription" type="dt:comment"/>
+                    <xs:element minOccurs="0" name="yourReference" type="dt:identifier"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="createManifestResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for createManifest operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="completedManifests" type="ns:completedManifests"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completedManifests">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of manifest details</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="completedManifestInfo" type="ns:completedManifestInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completedManifestInfo">
+        <xs:annotation>
+            <xs:documentation>schema to hold details of manifest</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="manifestBatchNumber" type="dt:identifier"/>
+            <xs:element minOccurs="1" name="totalItemCount" type="dt:cardinal"/>
+            <xs:element minOccurs="1" name="manifestShipments" type="ns:manifestShipments"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="manifestShipments">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of shipments manifested</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="manifestShipment" type="ns:manifestShipment"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="manifestShipment">
+        <xs:annotation>
+            <xs:documentation>schema to hold shipments manifested and associated service offering</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="serviceOffering" type="rd:serviceOfferingType"/>
+            <xs:element name="shipmentNumber" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="printManifestRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for printManifest operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:choice>
+                    <xs:element name="manifestBatchNumber" type="dt:identifier"/>
+                    <xs:element name="salesOrderNumber" type="dt:identifier"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="printManifestResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for printManifest operation. <manifest/>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="manifest" type="dt:document"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateShipmentRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for updateShipment operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="shipmentNumber" type="dt:identifier"/>
+                    <xs:element minOccurs="0" name="requestedShipment" type="ns:requestedShipment"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="updateShipmentResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for updateShipment operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="status" type="com:status"/>
+            <xs:element minOccurs="0" name="shipmentNumber" type="dt:identifier"/>
+            <xs:element minOccurs="0" name="requestedShipment" type="ns:requestedShipment"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cancelShipmentRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for cancelShipmentRequest operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cancelShipments" type="ns:cancelShipments"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="cancelShipments">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of shipment numbers</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="shipmentNumber" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cancelShipmentResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for cancelShipmentResponse operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="completedCancelInfo" type="ns:completedCancelInfo"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completedCancelInfo">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of cancelled shipments</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="status" type="com:status"/>
+            <xs:element minOccurs="0" name="completedCancelShipments" type="ns:completedCancelShipments"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="completedCancelShipments">
+        <xs:annotation>
+            <xs:documentation>schema to hold details of cancelled shipments and their associated status</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="shipmentNumber" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="printDocumentRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for printDocument operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element name="shipmentNumber" type="dt:identifier"/>
+                    <xs:element name="documentName" type="dt:identifier"/>
+                    <xs:element minOccurs="0" name="documentFormat" type="dt:identifier"/>
+                    <xs:element minOccurs="0" name="documentCopies" type="dt:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="printDocumentResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for printDocument operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="internationalDocument" type="dt:document"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="request1DRangesRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for request1DRangeRequest operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest">
+                <xs:sequence>
+                    <xs:element name="serviceReferences" type="ns:serviceReferences"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="serviceReferences">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of service references</xs:documentation>
+        </xs:annotation>
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="serviceReference" type="ns:serviceReference"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="serviceReference">
+        <xs:annotation>
+            <xs:documentation>schema to hold details for service occurrence, service offering, service enhancements combinations</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="serviceOccurrence" type="dt:ordinal"/>
+            <xs:element minOccurs="0" name="serviceOffering" type="rd:serviceOfferingType"/>
+            <xs:element minOccurs="0" name="serviceEnhancements" type="ns:serviceEnhancements"/>
+            <xs:element minOccurs="0" name="signature" type="dt:boolean"/>
+            <xs:element minOccurs="0" name="serviceType" type="rd:referenceDataType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="request1DRangesResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for request1DRangeRequest operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="serviceRanges" type="ns:serviceRanges"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="serviceRanges">
+        <xs:annotation>
+            <xs:documentation>schema to hold array of serviceRanges</xs:documentation>
+        </xs:annotation>
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="serviceRange" type="ns:serviceRange"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="serviceRange">
+        <xs:annotation>
+            <xs:documentation>schema to hold details of 1D Barcodes and associated service references</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="serviceReference" type="ns:serviceReference"/>
+            <xs:element name="barcode1DRange" type="ns:barcode1DRange"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="barcode1DRange">
+        <xs:annotation>
+            <xs:documentation>schema to hold start and end 1D barcode range</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="barcode1DRangeStart" type="dt:identifier"/>
+            <xs:element name="barcode1DRangeEnd" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="request2DItemIDRangeRequest">
+        <xs:annotation>
+            <xs:documentation>schema to hold request details for request2DItemIDRangeRequest operation</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ns:baseRequest"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="request2DItemIDRangeResponse">
+        <xs:annotation>
+            <xs:documentation>schema to hold response details for request2DItemIDRangeRequest operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="integrationHeader" type="int:integrationHeader"/>
+            <xs:element minOccurs="0" name="itemIDRange" type="ns:itemIDRange"/>
+            <xs:element minOccurs="0" name="integrationFooter" type="int:integrationFooter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="itemIDRange">
+        <xs:annotation>
+            <xs:documentation>schema to hold start and end itemID range</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="itemIDRangeStart" type="dt:identifier"/>
+            <xs:element name="itemIDRangeEnd" type="dt:identifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="exceptionDetails" type="soapext:exceptionDetails">
+        <xs:annotation>
+            <xs:documentation>schema to hold exceptions responses</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema><xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.royalmailgroup.com/integration/core/V1" version="1.11.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:int="http://www.royalmailgroup.com/integration/core/V1" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1">
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"/>
+    <xs:simpleType name="applicationId">
+        <xs:annotation>
+            <xs:documentation>For a request, this is the ID of the Service Requester calling the service, unique when combined with the TransactionId. For the response, this is the ID of the Service Provider, unique when combined with the TransactionId.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="dt:identifier">
+            <xs:maxLength value="50"/>
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:pattern value="[a-zA-Z0-9/\-]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="transactionId">
+        <xs:annotation>
+            <xs:documentation>Id preserved throughout the lifespan of the transaction, unique when combined with the applicationId and intermediaryId (if applicable).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="dt:identifier">
+            <xs:maxLength value="50"/>
+            <xs:whiteSpace value="preserve"/>
+            <xs:minLength value="1"/>
+            <xs:pattern value="[a-zA-Z0-9/\-]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="identificationStructure">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="endUserId" nillable="false" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>User ID associated with the end user of the internal or external organisation</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="applicationId" type="int:applicationId">
+                <xs:annotation>
+                    <xs:documentation>The ID of the Service Requester system calling the service, unique when combined with the transactionId.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="intermediaryId" nillable="false" type="int:applicationId">
+                <xs:annotation>
+                    <xs:documentation>Id associated with the Intermediary application (if applicable).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="transactionId" type="int:transactionId">
+                <xs:annotation>
+                    <xs:documentation>Unique session id sent by the Service Requestor (for the request) or returned by the Service Provider (for the response)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="integrationHeader">
+        <xs:annotation>
+            <xs:documentation>Common integration header definition</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="dateTime" nillable="false" type="dt:dateTime">
+                <xs:annotation>
+                    <xs:documentation>Date timestamp associated with when the data was generated, sent or received</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="version" type="dt:decimal">
+                <xs:annotation>
+                    <xs:documentation>Version of the service</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="identification" type="int:identificationStructure">
+                <xs:annotation>
+                    <xs:documentation>Identification details associated with the Service Requestor or Service Provider</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="testFlag" type="dt:boolean">
+                <xs:annotation>
+                    <xs:documentation>Flag which can be used to test that the exposed service is available. It is not expected that this flag will be used under normal BAU service operation.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="debugFlag" type="dt:boolean">
+                <xs:annotation>
+                    <xs:documentation>Flag which can be used to allow any messages to be dynamically debugged. It is not expected that this flag will be used under normal BAU service operation.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="performanceFlag" type="dt:boolean">
+                <xs:annotation>
+                    <xs:documentation>Flag which can be used to track the performance of the service across RMG systems (entry time, exit time, latency etc).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="errorCode">
+        <xs:annotation>
+            <xs:documentation>Code associated with the error condition in the form ENNNN</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="dt:identifier">
+            <xs:pattern value="[E]{1}[0-9]{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="warningCode">
+        <xs:annotation>
+            <xs:documentation>Code associated with the warning condition in the form WNNNN</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="dt:identifier">
+            <xs:pattern value="[W]{1}[0-9]{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="errorDetail">
+        <xs:sequence>
+            <xs:element name="errorCode" type="int:errorCode">
+                <xs:annotation>
+                    <xs:documentation>Code associated with the error condition</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="errorDescription" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Description of the error condition</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="errorCause" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Cause of the business error (if known)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="errorResolution" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Description of the resolution and action required to correct the error</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="errorContext" nillable="true" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Context of the business error, e.g. client or server</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="errorStructure">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="error" type="int:errorDetail"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="warningDetail">
+        <xs:sequence>
+            <xs:element name="warningCode" type="int:warningCode">
+                <xs:annotation>
+                    <xs:documentation>Code associated with the warning</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="warningDescription" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Description of the warning</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="warningCause" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Cause of the warning (if known)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="warningResolution" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Description of the resolution and action required to correct the warning</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="warningContext" nillable="true" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Context of the warning, e.g. client or server</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="warningStructure">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="warning" type="int:warningDetail"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="integrationFooter">
+        <xs:annotation>
+            <xs:documentation>Common integration footer definition</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errors" type="int:errorStructure"/>
+            <xs:element minOccurs="0" name="warnings" type="int:warningStructure"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="integrationHeader" type="int:integrationHeader"/>
+    <xs:element name="integrationFooter" type="int:integrationFooter"/>
+</xs:schema><xs:schema targetNamespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1" version="V1.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1">
+    <xs:simpleType name="twoDBarcode">
+        <xs:annotation>
+            <xs:documentation>Used in the digital representation of 2D Barcodes</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+    <xs:simpleType name="boolean">
+        <xs:annotation>
+            <xs:documentation>Boolean, or boolean logic, is a subset of algebra used for creating true/false statements. Boolean expressions use the operators AND, OR, XOR, and NOT to compare values and return a true or false result. Boolean values can also be referred to as 'flags'. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+    <xs:simpleType name="cardinal">
+        <xs:annotation>
+            <xs:documentation>A number indicating a whole number amount as in a count of items. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    <xs:simpleType name="document">
+        <xs:annotation>
+            <xs:documentation>Used in the digital representation of documents</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+    <xs:simpleType name="comment">
+        <xs:annotation>
+            <xs:documentation>A comment is a sub-type of string which can be used as a note intended as an explanation, illustration, instruction, capture of an interaction or an annotation. This is free format text which can be input by the end user.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="date">
+        <xs:annotation>
+            <xs:documentation>A date represents a period in time which could be a particular month, day, and year at which some event happened or will happen. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date"/>
+    </xs:simpleType>
+    <xs:simpleType name="dateTime">
+        <xs:annotation>
+            <xs:documentation>dateTime represents a period in time which could be a particular month, day, and year at which some event happened or will happen but also includes a breakdown of time using hours, minutes, seconds and milliseconds. A dateTime stamp is a common use for this data type so that a precise record of an event can be captured.  </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:dateTime"/>
+    </xs:simpleType>
+    <xs:simpleType name="decimal">
+        <xs:annotation>
+            <xs:documentation>A decimal data type represents a real number with every decimal place indicating a multiple of a negative power of 10. It represents non-repeating decimal fractions like 0.3 and -1.17 without rounding, and gives the ability to do arithmetic on them.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal"/>
+    </xs:simpleType>
+    <xs:simpleType name="description">
+        <xs:annotation>
+            <xs:documentation>A description is a sub-type of string and is statement in words that gives an account or descriptive representation of a thing. Descriptions are only editable via an admin function and are for display and information purposes only for end users.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="256"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="float">
+        <xs:annotation>
+            <xs:documentation>A float describes a data type for representing an approximation to real numbers in a way that can support a wide range of values. The numbers are, in general, represented approximately to a fixed number of significant digits (the mantissa) and scaled using an exponent. The base for the scaling is normally 2, 10 or 16.
+For example, the numbers 5.5, 0.001, and -2,345.6789 are floating point numbers. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+    <xs:simpleType name="geoSpatial">
+        <xs:annotation>
+            <xs:documentation>A decimal data type representing Latitude and Longitude data. The format of decimal 10,7 was chosen as a generic representation which facilities conversion between geospatial systems</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:fractionDigits value="7"/>
+            <xs:totalDigits value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="identifier">
+        <xs:annotation>
+            <xs:documentation>An identifier is a sub-type of string which serves as a means of identification for a particular thing; An identifier can be associated with a name. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="128"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="integer">
+        <xs:annotation>
+            <xs:documentation>An integer is a whole number (not a fraction) that can be positive, negative, or zero. Unlike floats, integers cannot have decimal places.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    <xs:simpleType name="longDescription">
+        <xs:annotation>
+            <xs:documentation>A long description is a sub-type of string and is a longer version of a description (see definition of description) and is used to expand a description. Descriptions are only editable via an admin function and are for display and information purposes only for end users.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="512"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="longName">
+        <xs:annotation>
+            <xs:documentation>A long name is a sub-type of string and is word or a combination of words by which an organization, place, or thing, a body or class, or any object of thought is designated, called, or known.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="128"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="name">
+        <xs:annotation>
+            <xs:documentation>A name is a sub-type of string and is word or a combination of words by which a person, place, or thing, a body or class, or any object of thought is designated, called, or known.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="64"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ordinal">
+        <xs:annotation>
+            <xs:documentation>A number indicating a position as in a sequence number. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    <xs:simpleType name="shortDescription">
+        <xs:annotation>
+            <xs:documentation>A short description is a sub-type of string and is a shorter version of a description (see definition of description) and is used to summarise a longer description. Descriptions are only editable via an admin function and are for display and information purposes only for end users</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="128"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="shortName">
+        <xs:annotation>
+            <xs:documentation>A name is a sub-type of string and is word or a combination of words by which a person, place, or thing, a body or class, or any object of thought is designated, called, or known. short name is intended for use with Reference data items</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="64"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string">
+        <xs:annotation>
+            <xs:documentation>Simple set of alphanumeric characters.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="time">
+        <xs:annotation>
+            <xs:documentation>time is a unit of measure to record hours, minutes, seconds and milliseconds. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+    <xs:simpleType name="twoDBbarcode">
+        <xs:annotation>
+            <xs:documentation>Used in the digital representation of 2D Barcodes 
+### DO NOT USE - superceded by twoDBarcode ###</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:base64Binary"/>
+    </xs:simpleType>
+</xs:schema><xs:schema targetNamespace="http://www.royalmailgroup.com/cm/common/V4" version="V4.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rd="http://www.royalmailgroup.com/cm/referenceData/V3" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1" xmlns:com="http://www.royalmailgroup.com/cm/common/V4">
+    <xs:annotation>
+        <xs:documentation>This package contains those complex classes which are viewed as being ubiquitous across the organization i.e. address, amount, status.</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/referenceData/V3"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"/>
+    <xs:element name="postcode" type="com:postcode"/>
+    <xs:complexType name="postcode">
+        <xs:annotation>
+            <xs:documentation>A geospatial categorization of a geographical area.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="postcodeIdentifier" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>Unique identifier for a postcode</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="postcode" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>A code created to abbreviate a series of postal addresses, that share location affinity, in order to facilitate mail collection, processing and delivery.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="status" type="com:status">
+                <xs:annotation>
+                    <xs:documentation>This is the state of the entity (i.e. it is active, approved, draft, inactive, etc).  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="audit" type="com:audit">
+                <xs:annotation>
+                    <xs:documentation>The audit type is appended to all business data constructs to ensure a standard way of capturing key data to track back users who have made changes to the data. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="formatDatetime" type="com:formatDatetime"/>
+    <xs:complexType name="formatDatetime">
+        <xs:annotation>
+            <xs:documentation>Defines a primitive Date time with a specified format.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="dateFormatType" type="rd:dateFormatType">
+                <xs:annotation>
+                    <xs:documentation>Defines a preferred format for a date</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="dateTime" type="dt:dateTime">
+                <xs:annotation>
+                    <xs:documentation>A temporal value which contains both date and time elements</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="address" type="com:address"/>
+    <xs:complexType name="address">
+        <xs:annotation>
+            <xs:documentation>A postal address is a method of identifying a deliverable Location to the postal service.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="addressUsageType" type="rd:addressUsageType">
+                <xs:annotation>
+                    <xs:documentation>This denotes the function the address plays (i.e. it is a primary address, seasonal, etc). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="domesticIndicator" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>This flag indicates whether the address is a UK domestic address or an international address. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="buildingName" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>This is the vanity name for a building or house (i.e. Rowland Hill House). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="buildingNumber" type="dt:integer">
+                <xs:annotation>
+                    <xs:documentation>This is the allocated number identifying the location within the postcode. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="addressLine1" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Generic line to hold address body (i.e. street name and number, direction, borough, etc). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="addressLine2" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Generic line to hold address body (i.e. street name and number, direction, borough, etc). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="addressLine3" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Generic line to hold address body (i.e. street name and number, direction, borough, etc). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="addressLine4" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>Generic line to hold address body (i.e. street name and number, direction, borough, etc). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="stateOrProvince" type="rd:stateOrProvinceType">
+                <xs:annotation>
+                    <xs:documentation>This is used specifically for international items only and is applicable for the US, Canada, Australia, etc. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="postTown" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>A town is a human settlement larger than a village but smaller than a city.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="county" type="rd:countyType">
+                <xs:annotation>
+                    <xs:documentation>A territorial division exercising administrative, judicial, and political functions.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="postcode" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>A code created to abbreviate a series of postal addresses, that share location affinity, in order to facilitate mail collection, processing and delivery.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="country" type="rd:countryType">
+                <xs:annotation>
+                    <xs:documentation>A Country as recognised by the International Standards Organisation.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="status" type="com:status">
+                <xs:annotation>
+                    <xs:documentation>This is the state of the entity (i.e. it is active, approved, draft, inactive, etc).  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="audit" type="com:audit">
+                <xs:annotation>
+                    <xs:documentation>The audit type is appended to all business data constructs to ensure a standard way of capturing key data to track back users who have made changes to the data. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="amount" type="com:amount"/>
+    <xs:complexType name="amount">
+        <xs:annotation>
+            <xs:documentation>An amount is the total or two or more quantities; the aggregate. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="creditIndicator" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>This indicates whether the amount is a credit or a debit. If the boolean value is a 1 then the amount is greater than or equal to zero. If the boolean value is a 0, then the amount is less than zero. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="currency" type="rd:currencyType">
+                <xs:annotation>
+                    <xs:documentation>The currency code for the taxonomy is used to indicate the system of money (monetary units) in common use, especially in a nation. Under this definition, British pounds, U.S. dollars, and European euros are different types of currency, or currencies. Currencies in the sense used by foreign exchange markets, are defined by governments, and each type has limited boundaries of acceptance.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="value" type="dt:decimal">
+                <xs:annotation>
+                    <xs:documentation>The number that designates the quantity of the amount. i.e. 5.50 Because there is a credit indicator, this field MUST always be an absolute value and the credit or debit is interpreted through the indicator field. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="audit" type="com:audit"/>
+    <xs:complexType name="audit">
+        <xs:annotation>
+            <xs:documentation>The audit class is appended to all business and reference data constructs to ensure a standard way of capturing key data to track back users who have made changes to the data.   </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="lastUpdateDate" type="dt:dateTime">
+                <xs:annotation>
+                    <xs:documentation>The date the data was late updated. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="lastUpdateUserIdentifier" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>The last update user ID represents the user identifier for the last person who updated the record. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="contactMechanism" type="com:contactMechanism"/>
+    <xs:complexType name="contactMechanism">
+        <xs:annotation>
+            <xs:documentation>The Contact Mechanism object contains the methods and usage for contacting a Party.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="contactMechanismIdentifier" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>Contact mechanism unique identifier </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="contactMethod" type="rd:contactMethodType">
+                <xs:annotation>
+                    <xs:documentation>Contact method unique identifier in the MDM system</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="contactUsage" type="rd:contactUsageType">
+                <xs:annotation>
+                    <xs:documentation>Defines Contact usage i.e. 
+???	1000000 ??? UNKNOWN
+???	1000001 ??? NOT APPLICABLE
+???	1000002 ??? BUSINESS</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="audit" type="com:audit">
+                <xs:annotation>
+                    <xs:documentation>The audit type is appended to all business data constructs to ensure a standard way of capturing key data to track back users who have made changes to the data. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="digitalAddress" type="com:digitalAddress"/>
+    <xs:complexType name="digitalAddress">
+        <xs:annotation>
+            <xs:documentation>Electronic address such as email or twitter. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="com:contactMechanism">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="1" name="electronicAddress" type="dt:description">
+                        <xs:annotation>
+                            <xs:documentation>A address relating to email, website or other internet location</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="dimension" type="com:dimension"/>
+    <xs:complexType name="dimension">
+        <xs:annotation>
+            <xs:documentation>A dimension is a measure of spatial extent. It is a physical property, such as mass, length, time, or a combination thereof, regarded as a fundamental measure or as one of a set of fundamental measures of a physical quantity. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="unitOfMeasure" type="rd:unitOfMeasureType">
+                <xs:annotation>
+                    <xs:documentation>A unit of measure is the reference value to select the type of dimension being referenced. Sample values could be weight, length, height, depth, etc. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="value" type="xs:float">
+                <xs:annotation>
+                    <xs:documentation>The number that designates the quantity of the dimension. i.e. 5 centimeters.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="geoSpatialPosition" type="com:geoSpatialPosition"/>
+    <xs:complexType name="geoSpatialPosition">
+        <xs:annotation>
+            <xs:documentation>defines the exact position according to a geo spatial system  </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="geoDeticSystem" type="rd:systemNameType">
+                <xs:annotation>
+                    <xs:documentation>Standard global positioning system being used i.e. WGS84</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="geoSpatialPositionType" type="rd:geospatialPositionType">
+                <xs:annotation>
+                    <xs:documentation>Defines the context for a geo spatial location i.e. back door, front door, post box etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="altitude" type="dt:decimal">
+                <xs:annotation>
+                    <xs:documentation>Defines the height component of a position</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="longitude" type="dt:geoSpatial">
+                <xs:annotation>
+                    <xs:documentation>The longitude component of a geospatial position</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="latitude" type="dt:geoSpatial">
+                <xs:annotation>
+                    <xs:documentation>The latitude component of a geospatial position</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="status" type="com:status"/>
+    <xs:complexType name="status">
+        <xs:annotation>
+            <xs:documentation>This is the state of the entity (i.e. it is active, approved, draft, inactive, etc).  </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="status" type="rd:statusType">
+                <xs:annotation>
+                    <xs:documentation>This is the state of the reference data (i.e. it is active, approved, draft, inactive, etc).  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="validFrom" type="dt:dateTime">
+                <xs:annotation>
+                    <xs:documentation>The date at which the data becomes active. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="validTo" type="dt:dateTime">
+                <xs:annotation>
+                    <xs:documentation>The date at which the data is retired. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="systemCrossReference" type="com:systemCrossReference"/>
+    <xs:complexType name="systemCrossReference">
+        <xs:annotation>
+            <xs:documentation>This class is used to manage cross reference keys between systems. For example an entity will be known by one identifier in the source system and have another in the target system so these keys are used so that the target system can identify the appropriate entity within its own system. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="sourceSystemCode" type="rd:systemNameType">
+                <xs:annotation>
+                    <xs:documentation>The source identifier can be an acronym or number used to identify it. The system catalogue is a frequently used number to identify systems within RMG. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="sourceCrossReferenceAttribute" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>The name of the attribute of a source system cross referenced to the target system.    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="sourceCrossReferenceValue" type="dt:string">
+                <xs:annotation>
+                    <xs:documentation>The value of a source system attribute cross referenced to the target system value.    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="targetSystemCode" type="rd:systemNameType">
+                <xs:annotation>
+                    <xs:documentation>The target source system name is the commonly used name for a system and will be more business oriented than a numerical identifier. An example would the Traffic and Revenue Reporting System.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="targetCrossReferenceAttribute" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>The name of a target system attribute cross referenced to the source system.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="targetCrossReferenceValue" type="dt:string">
+                <xs:annotation>
+                    <xs:documentation>The value of a target system attribute cross referenced to the source system value.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="status" type="com:status">
+                <xs:annotation>
+                    <xs:documentation>This is the state of the entity (i.e. it is active, approved, draft, inactive, etc).  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="audit" type="com:audit">
+                <xs:annotation>
+                    <xs:documentation>The audit type is appended to all business data constructs to ensure a standard way of capturing key data to track back users who have made changes to the data. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="telephoneNumber" type="com:telephoneNumber"/>
+    <xs:complexType name="telephoneNumber">
+        <xs:annotation>
+            <xs:documentation>Standard Format for a telephone number</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="com:contactMechanism">
+                <xs:sequence>
+                    <xs:element maxOccurs="1" minOccurs="0" name="countryCode" type="dt:integer">
+                        <xs:annotation>
+                            <xs:documentation>Standard Country Dialing code i.e. 0044</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="areaCode" type="dt:integer">
+                        <xs:annotation>
+                            <xs:documentation>Standard telephone number area code</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="telephoneNumber" type="dt:integer">
+                        <xs:annotation>
+                            <xs:documentation>Body of the telephone number.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="extensionNumber" type="dt:integer">
+                        <xs:annotation>
+                            <xs:documentation>Extension number within a location.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="speedDialNumber" type="dt:integer">
+                        <xs:annotation>
+                            <xs:documentation>Speed dial number for a location.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema><xs:schema targetNamespace="http://www.royalmailgroup.com/cm/referenceData/V3" version="V3.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rd="http://www.royalmailgroup.com/cm/referenceData/V3" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1">
+    <xs:annotation>
+        <xs:documentation>Package containing the set of code/description static data types used to categorize business facts. Reference Data represents finite value sets that are logically identified by the Type and Code. Codes are unique within a type. Codes are intelligent mnemonics i.e. US for United States etc.</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"/>
+    <xs:element name="businessFunctionType" type="rd:businessFunctionType"/>
+    <xs:complexType name="businessFunctionType">
+        <xs:annotation>
+            <xs:documentation>A categorization of processes, people and resources organized in such a way as to produce a business outcome</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="businessFunctionCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>A categorization of processes, people and resources organized in such a way as to  produce a business outcome</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="addressUsageType" type="rd:addressUsageType"/>
+    <xs:complexType name="addressUsageType">
+        <xs:annotation>
+            <xs:documentation>This denotes the function the address plays (i.e. it is a primary address, seasonal, etc). </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="addressUsageCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>This denotes the function the address plays (i.e. it is a primary address, seasonal, etc). </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="bFPOFormatType" type="rd:bFPOFormatType"/>
+    <xs:complexType name="bFPOFormatType">
+        <xs:annotation>
+            <xs:documentation>Reference data identifying the format of British Forces Posting Overseas Mail Items</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="bFPOFormatCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Reference data identifying the Format of British Forces Posting Overseas Mail Items</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="calendarType" type="rd:calendarType"/>
+    <xs:complexType name="calendarType">
+        <xs:annotation>
+            <xs:documentation>Defines a calendar as being Fiscal, Operational, Quality or Calendar</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="calendarCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines a calendar as being Fiscal, Operational, Quality or Calendar.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="contactMethodType" type="rd:contactMethodType"/>
+    <xs:complexType name="contactMethodType">
+        <xs:annotation>
+            <xs:documentation>Contains the communication methods. Communication methods include telephone or email.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="contactMethodCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Means of communication, telephone, email, etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="contactUsageType" type="rd:contactUsageType"/>
+    <xs:complexType name="contactUsageType">
+        <xs:annotation>
+            <xs:documentation>Usage associated with a contact method i.e. business, social etc</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="contactUsageCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Usage associated with a contact method i.e. business, social etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="countryType" type="rd:countryType"/>
+    <xs:complexType name="countryType">
+        <xs:annotation>
+            <xs:documentation>A Country as recognised by the International Standards Organisation.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="countryCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>A Country as recognised by the International Standards Organisation</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="countyType" type="rd:countyType"/>
+    <xs:complexType name="countyType">
+        <xs:annotation>
+            <xs:documentation>A territorial division exercising administrative, judicial, and political functions.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="countyCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>A territorial division exercising administrative, judicial, and political functions.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="currencyType" type="rd:currencyType"/>
+    <xs:complexType name="currencyType">
+        <xs:annotation>
+            <xs:documentation>The currency code for the taxonomy is used to indicate the system of money (monetary units) in common use, especially in a nation. Under this definition, British pounds, U.S. dollars, and European euros are different types of currency, or currencies. Currencies in the sense used by foreign exchange markets, are defined by governments, and each type has limited boundaries of acceptance.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="currencyCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Currency code is used to indicate the system of money (monetary units) in common use within a nation. Under this definition, British pounds, U.S. dollars, and European euros are different types of currency, or currencies. Currencies in the sense used by foreign exchange markets, are defined by governments, and each type has limited boundaries of acceptance.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="dateFormatType" type="rd:dateFormatType"/>
+    <xs:complexType name="dateFormatType">
+        <xs:annotation>
+            <xs:documentation>Defines a preferred format for a datetime value.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="dateFormatCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines a preferred format for a datetime value.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="dayOfWeekType" type="rd:dayOfWeekType"/>
+    <xs:complexType name="dayOfWeekType">
+        <xs:annotation>
+            <xs:documentation>Day of week i.e. Monday, Tuesday etc</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element maxOccurs="1" minOccurs="1" name="dayOfWeekCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Day of week.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:element name="durationType" type="rd:durationType"/>
+    <xs:complexType name="durationType">
+        <xs:annotation>
+            <xs:documentation>Defines a type of time period i.e. weekly, monthly, quarterly, annually etc</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="durationCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines a type of time period i.e. weekly, monthly, quarterly, annually etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="functionalLocationRelationshipType" type="rd:functionalLocationRelationshipType"/>
+    <xs:complexType name="functionalLocationRelationshipType">
+        <xs:annotation>
+            <xs:documentation>Defines the Functional Location Group Relationship in terms of PCA, Parent, Operational, Management etc</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="functionalLocationRelationCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the Functional Location Group Relationship in terms of PCA, Parent, Operational, Management etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="functionalLocationSubType" type="rd:functionalLocationSubType"/>
+    <xs:complexType name="functionalLocationSubType">
+        <xs:annotation>
+            <xs:documentation>Defines the Functional Location at the lowest level in terms of airport, seaport, rail hub etc</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="functionalLocationSubtypeCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the Functional Location at the lowest level in terms of airport, seaport, rail hub etc</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="functionalLocationType" type="rd:functionalLocationType"/>
+    <xs:complexType name="functionalLocationType">
+        <xs:annotation>
+            <xs:documentation>Defines the type of Functional Location such as Region, Network Hub, Delivery Hub etc.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="functionalLocationCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the type of Functional Location such as Region, Network Hub, Delivery Hub etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="geospatialPositionType" type="rd:geospatialPositionType"/>
+    <xs:complexType name="geospatialPositionType">
+        <xs:annotation>
+            <xs:documentation>Gives context to a Geo Spatial Position i.e. front door, back door, Post Box.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="geospatialPositionCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Gives context to a Geo Spatial Position i.e. front door, back door, Post Box.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="mailClassType" type="rd:mailClassType"/>
+    <xs:complexType name="mailClassType">
+        <xs:annotation>
+            <xs:documentation>Reference data identifying the class of mail service.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="mailClassCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Reference data identifying the class of mail service.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="mailItemFormatType" type="rd:mailItemFormatType"/>
+    <xs:complexType name="mailItemFormatType">
+        <xs:annotation>
+            <xs:documentation>The format (RM Letters or International) of the Mail Item.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="mailItemFormatCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>The format (RM Letters or International) of the Mail Item.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="nameSuffixType" type="rd:nameSuffixType"/>
+    <xs:complexType name="nameSuffixType">
+        <xs:annotation>
+            <xs:documentation>Defines the suffix of a name i.e. Jnr, Esq etc.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="nameSuffixCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the suffix of a name i.e. Jnr, Esq etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="nameType" type="rd:nameType"/>
+    <xs:complexType name="nameType">
+        <xs:annotation>
+            <xs:documentation>Defines the type of name in terms of being Primary, Alias or Nickname</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="nameCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the type of name in terms of being Primary, Alias or Nickname</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="nonWorkingDayType" type="rd:nonWorkingDayType"/>
+    <xs:complexType name="nonWorkingDayType">
+        <xs:annotation>
+            <xs:documentation>Non Working Day object contains all the planned non-working days. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="nonWorkingDayCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Non Working Day object contains all the planned non-working days i.e. Bank Holiday, Local Holiday.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="postageSizeType" type="rd:postageSizeType"/>
+    <xs:complexType name="postageSizeType">
+        <xs:annotation>
+            <xs:documentation>Defines the different sizes of letters or parcels</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="postageSizeCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the different sizes of letters and parcels</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="referenceDataType" type="rd:referenceDataType"/>
+    <xs:complexType name="referenceDataType">
+        <xs:annotation>
+            <xs:documentation>The reference data class gives a common structure which will be adopted for all generic reference data. Reference data tends to be 'Qualifier' data (referenced in the data standards document on Sharepoint). For example the expression Product Short Name; 'Short' in this instance is the qualifier and could have a corresponding set of reference values that could be used. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="identifier" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>~Unique identifier for a Reference Data instance.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="code" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>The code is used as an identifier to recognize or establish a particular person or thing. It is used to verify the identity of the bearer of an identity. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="name" type="dt:longName">
+                <xs:annotation>
+                    <xs:documentation>Name assorted with the code i.e. Name - United States for Code - US.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="0" name="description" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>A description or the reference data item. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="roleType" type="rd:roleType"/>
+    <xs:complexType name="roleType">
+        <xs:annotation>
+            <xs:documentation>Defines the different roles which a party may fulfil.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="roleCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the different roles a party may fulfil.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="serviceEnhancementType" type="rd:serviceEnhancementType"/>
+    <xs:complexType name="serviceEnhancementType">
+        <xs:annotation>
+            <xs:documentation>Defines the type of enhancement used to add to an offering/product (with specific parameters) which may be sold to a customer.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="serviceEnhancementCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the type of enhancement used to add to an offering/product (with specific parameters) which may be sold to a customer.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="serviceFormatType" type="rd:serviceFormatType"/>
+    <xs:complexType name="serviceFormatType">
+        <xs:annotation>
+            <xs:documentation>Defines the format of the Service being offered. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="serviceFormatCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the format of the Service being offered.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="serviceOfferingType" type="rd:serviceOfferingType"/>
+    <xs:complexType name="serviceOfferingType">
+        <xs:annotation>
+            <xs:documentation>Defines the type of offering/product (with specific parameters) which may be sold to a customer.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="serviceOfferingCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the type of offering/product (with specific parameters) which may be sold to a customer. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="stateOrProvinceType" type="rd:stateOrProvinceType"/>
+    <xs:complexType name="stateOrProvinceType">
+        <xs:annotation>
+            <xs:documentation>This is used specifically for international items only and is applicable for the US, Canada, Australia, etc. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="stateOrProvinceCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>This is used specifically for international items only and is applicable for the US, Canada, Australia, etc. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="statusType" type="rd:statusType"/>
+    <xs:complexType name="statusType">
+        <xs:annotation>
+            <xs:documentation>This is the state of an entity (i.e. it is active, approved, draft, inactive, etc). The sequence of states an entity passes through define the entity life history.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="statusCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>This is the state of an entity (i.e. it is active, approved, draft, inactive, etc).  The sequence of states an entity passes through define the entity life history.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="systemNameType" type="rd:systemNameType"/>
+    <xs:complexType name="systemNameType">
+        <xs:annotation>
+            <xs:documentation>The official RMG system name is the commonly used name for a system and will be more business oriented than a numerical identifier. An example would the Traffic and Revenue Reporting System.  </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="systemNameCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>The official RMG system name is the commonly used name for a system and will be more business oriented than a numerical identifier. An example would the Traffic and Revenue Reporting System. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="taxType" type="rd:taxType"/>
+    <xs:complexType name="taxType">
+        <xs:annotation>
+            <xs:documentation>Defines the different types of tax i.e. VAT, Income, Corporate etc.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="taxCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the different types of tax i.e. VAT, Income, Corporate etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="titleType" type="rd:titleType"/>
+    <xs:complexType name="titleType">
+        <xs:annotation>
+            <xs:documentation>Defines the prefix of a name</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="titleCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Defines the prefix of a name</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="unitOfMeasureType" type="rd:unitOfMeasureType"/>
+    <xs:complexType name="unitOfMeasureType">
+        <xs:annotation>
+            <xs:documentation>A unitOfMeasure represents is a definite magnitude of a physical quantity, defined and adopted by convention or by law, that is used as a standard for measurement of the same physical quantity. Any other value of the physical quantity can be expressed as a simple multiple of the unit of measure. For example, length is a physical quantity. The metre is a unit of length that represents a definite predetermined length. When we say 10 metres, we actually mean 10 times the definite predetermined length called ???metre???.  </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="unitOfMeasureCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>A unitOfMeasure represents is a definite magnitude of a physical quantity, defined and adopted by convention or by law, that is used as a standard for measurement of the same physical quantity. Any other value of the physical quantity can be expressed as a simple multiple of the unit of measure. For example, length is a physical quantity. The metre is a unit of length that represents a definite predetermined length. When we say 10 metres, we actually mean 10 times the definite predetermined length called ???metre???.  </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="workingDayType" type="rd:workingDayType"/>
+    <xs:complexType name="workingDayType">
+        <xs:annotation>
+            <xs:documentation>Working Day Type contains the set of Types of working days. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="workingDayCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Working Day Type contains the set of Types of working days. </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="functionalLocationGroupType" type="rd:functionalLocationGroupType"/>
+    <xs:complexType name="functionalLocationGroupType">
+        <xs:annotation>
+            <xs:documentation>Specifies if the type  of Functional Location group</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="functionalLocationGroupCode" type="rd:referenceDataType">
+                <xs:annotation>
+                    <xs:documentation>Specifies the Functional Location Group type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema><xs:schema targetNamespace="http://www.royalmailgroup.com/soap/extensions/V1" version="1.2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapext="http://www.royalmailgroup.com/soap/extensions/V1" xmlns:int="http://www.royalmailgroup.com/integration/core/V1" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1">
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"/>
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1"/>
+    <xs:complexType name="detail">
+        <xs:annotation>
+            <xs:documentation>Element used to hold SOAP fault details</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="exceptionDetails" type="soapext:exceptionDetails"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="exceptionDetails">
+        <xs:annotation>
+            <xs:documentation>Used to hold the RMG defined data elements associated with the SOAP fault</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="exceptionTransactionId" type="int:transactionId"/>
+            <xs:element name="exceptionCode" type="int:errorCode"/>
+            <xs:element name="exceptionText" type="dt:description"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema><xsd:schema attributeFormDefault="unqualified" blockDefault="#all" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" version="0.2" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+    <xsd:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+    <xsd:complexType name="AttributedString">
+        <xsd:annotation>
+            <xsd:documentation>This type represents an element with arbitrary attributes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute ref="wsu:Id"/>
+                <xsd:anyAttribute namespace="##other" processContents="lax"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PasswordString">
+        <xsd:annotation>
+            <xsd:documentation>This type is used for password elements per Section 4.1.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="wsse:AttributedString">
+                <xsd:attribute name="Type" type="xsd:anyURI"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EncodedString">
+        <xsd:annotation>
+            <xsd:documentation>This type is used for elements containing stringified binary data.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="wsse:AttributedString">
+                <xsd:attribute name="EncodingType" type="xsd:anyURI"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="UsernameTokenType">
+        <xsd:annotation>
+            <xsd:documentation>This type represents a username token per Section 4.1</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="Username" type="wsse:AttributedString"/>
+            <xsd:any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
+        </xsd:sequence>
+        <xsd:attribute ref="wsu:Id"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+    <xsd:complexType name="BinarySecurityTokenType">
+        <xsd:annotation>
+            <xsd:documentation>A security token that is encoded in binary</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="wsse:EncodedString">
+                <xsd:attribute name="ValueType" type="xsd:anyURI"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="KeyIdentifierType">
+        <xsd:annotation>
+            <xsd:documentation>A security token key identifier</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="wsse:EncodedString">
+                <xsd:attribute name="ValueType" type="xsd:anyURI"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="tUsage">
+        <xsd:annotation>
+            <xsd:documentation>Typedef to allow a list of usages (as URIs).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:list itemType="xsd:anyURI"/>
+    </xsd:simpleType>
+    <xsd:attribute name="Usage" type="tUsage">
+        <xsd:annotation>
+            <xsd:documentation>This global attribute is used to indicate the usage of a referenced or indicated token within the containing context</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:complexType name="ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>This type represents a reference to an external security token.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="URI" type="xsd:anyURI"/>
+        <xsd:attribute name="ValueType" type="xsd:anyURI"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+    <xsd:complexType name="EmbeddedType">
+        <xsd:annotation>
+            <xsd:documentation>This type represents a reference to an embedded security token.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+            <xsd:any processContents="lax"/>
+        </xsd:choice>
+        <xsd:attribute name="ValueType" type="xsd:anyURI"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+    <xsd:complexType name="SecurityTokenReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>This type is used reference a security token.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+            <xsd:any processContents="lax"/>
+        </xsd:choice>
+        <xsd:attribute ref="wsu:Id"/>
+        <xsd:attribute ref="wsse:Usage"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+    <xsd:complexType name="SecurityHeaderType">
+        <xsd:annotation>
+            <xsd:documentation>This complexType defines header block to use for security-relevant data directed at a specific SOAP actor.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:any maxOccurs="unbounded" minOccurs="0" processContents="lax">
+                <xsd:annotation>
+                    <xsd:documentation>The use of "any" is to allow extensibility and different forms of security data.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:any>
+        </xsd:sequence>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+    <xsd:complexType name="TransformationParametersType">
+        <xsd:annotation>
+            <xsd:documentation>This complexType defines a container for elements to be specified from any namespace as properties/parameters of a DSIG transformation.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:any maxOccurs="unbounded" minOccurs="0" processContents="lax">
+                <xsd:annotation>
+                    <xsd:documentation>The use of "any" is to allow extensibility from any namespace.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:any>
+        </xsd:sequence>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+    <xsd:element name="UsernameToken" type="wsse:UsernameTokenType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines the wsse:UsernameToken element per Section 4.1.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="BinarySecurityToken" type="wsse:BinarySecurityTokenType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines the wsse:BinarySecurityToken element per Section 4.2.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Reference" type="wsse:ReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines a security token reference</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Embedded" type="wsse:EmbeddedType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines a security token embedded reference</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="KeyIdentifier" type="wsse:KeyIdentifierType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines a key identifier reference</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SecurityTokenReference" type="wsse:SecurityTokenReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines the wsse:SecurityTokenReference per Section 4.3.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Security" type="wsse:SecurityHeaderType">
+        <xsd:annotation>
+            <xsd:documentation>This element defines the wsse:Security SOAP header element per Section 4.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="TransformationParameters" type="wsse:TransformationParametersType">
+        <xsd:annotation>
+            <xsd:documentation>This element contains properties for transformations from any namespace, including DSIG.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Password" type="wsse:PasswordString"/>
+    <xsd:element name="Nonce" type="wsse:EncodedString"/>
+    <xsd:simpleType name="FaultcodeEnum">
+        <xsd:restriction base="xsd:QName">
+            <xsd:enumeration value="wsse:UnsupportedSecurityToken"/>
+            <xsd:enumeration value="wsse:UnsupportedAlgorithm"/>
+            <xsd:enumeration value="wsse:InvalidSecurity"/>
+            <xsd:enumeration value="wsse:InvalidSecurityToken"/>
+            <xsd:enumeration value="wsse:FailedAuthentication"/>
+            <xsd:enumeration value="wsse:FailedCheck"/>
+            <xsd:enumeration value="wsse:SecurityTokenUnavailable"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema><xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" version="0.1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+    <xsd:simpleType name="tTimestampFault">
+        <xsd:annotation>
+            <xsd:documentation>
+This type defines the fault code value for Timestamp message expiration.
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:QName">
+            <xsd:enumeration value="wsu:MessageExpired"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:attribute name="Id" type="xsd:ID">
+        <xsd:annotation>
+            <xsd:documentation>
+This global attribute supports annotating arbitrary elements with an ID.
+          </xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup name="commonAtts">
+        <xsd:annotation>
+            <xsd:documentation>
+Convenience attribute group used to simplify this schema.
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute ref="wsu:Id" use="optional"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="AttributedDateTime">
+        <xsd:annotation>
+            <xsd:documentation>
+This type is for elements whose [children] is a psuedo-dateTime and can have arbitrary attributes. 
+      </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attributeGroup ref="wsu:commonAtts"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="AttributedURI">
+        <xsd:annotation>
+            <xsd:documentation>
+This type is for elements whose [children] is an anyURI and can have arbitrary attributes.
+      </xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:anyURI">
+                <xsd:attributeGroup ref="wsu:commonAtts"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="TimestampType">
+        <xsd:annotation>
+            <xsd:documentation>
+This complex type ties together the timestamp related elements into a composite type.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" ref="wsu:Created"/>
+            <xsd:element minOccurs="0" ref="wsu:Expires"/>
+            <xsd:choice maxOccurs="unbounded" minOccurs="0">
+                <xsd:any namespace="##other" processContents="lax"/>
+            </xsd:choice>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="wsu:commonAtts"/>
+    </xsd:complexType>
+    <xsd:element name="Timestamp" type="wsu:TimestampType">
+        <xsd:annotation>
+            <xsd:documentation>
+This element allows Timestamps to be applied anywhere element wildcards are present,
+including as a SOAP header.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Expires" type="wsu:AttributedDateTime">
+        <xsd:annotation>
+            <xsd:documentation>
+This element allows an expiration time to be applied anywhere element wildcards are present.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="Created" type="wsu:AttributedDateTime">
+        <xsd:annotation>
+            <xsd:documentation>
+This element allows a creation time to be applied anywhere element wildcards are present.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema><xs:schema targetNamespace="http://www.w3.org/XML/1998/namespace" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:annotation>
+        <xs:documentation>
+   See http://www.w3.org/XML/1998/namespace.html and
+   http://www.w3.org/TR/REC-xml for information about this namespace.
+
+    This schema document describes the XML namespace, in a form
+    suitable for import by other schema documents.  
+
+    Note that local names in this namespace are intended to be defined
+    only by the World Wide Web Consortium or its subgroups.  The
+    following names are currently defined in this namespace and should
+    not be used with conflicting semantics by any Working Group,
+    specification, or document instance:
+
+    base (as an attribute name): denotes an attribute whose value
+         provides a URI to be used as the base for interpreting any
+         relative URIs in the scope of the element on which it
+         appears; its value is inherited.  This name is reserved
+         by virtue of its definition in the XML Base specification.
+
+    lang (as an attribute name): denotes an attribute whose value
+         is a language code for the natural language of the content of
+         any element; its value is inherited.  This name is reserved
+         by virtue of its definition in the XML specification.
+  
+    space (as an attribute name): denotes an attribute whose
+         value is a keyword indicating what whitespace processing
+         discipline is intended for the content of the element; its
+         value is inherited.  This name is reserved by virtue of its
+         definition in the XML specification.
+
+    Father (in any context at all): denotes Jon Bosak, the chair of 
+         the original XML Working Group.  This name is reserved by 
+         the following decision of the W3C XML Plenary and 
+         XML Coordination groups:
+
+             In appreciation for his vision, leadership and dedication
+             the W3C XML Plenary on this 10th day of February, 2000
+             reserves for Jon Bosak in perpetuity the XML name
+             xml:Father
+  </xs:documentation>
+    </xs:annotation>
+    <xs:annotation>
+        <xs:documentation>This schema defines attributes and an attribute group
+        suitable for use by
+        schemas wishing to allow xml:base, xml:lang or xml:space attributes
+        on elements they define.
+
+        To enable this, such a schema must import this schema
+        for the XML namespace, e.g. as follows:
+        &lt;schema . . .>
+         . . .
+         &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+                    schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+
+        Subsequently, qualified reference to any of the attributes
+        or the group defined below will have the desired effect, e.g.
+
+        &lt;type . . .>
+         . . .
+         &lt;attributeGroup ref="xml:specialAttrs"/>
+ 
+         will define a type which will schema-validate an instance
+         element with any of those attributes</xs:documentation>
+    </xs:annotation>
+    <xs:annotation>
+        <xs:documentation>In keeping with the XML Schema WG's standard versioning
+   policy, this schema document will persist at
+   http://www.w3.org/2001/03/xml.xsd.
+   At the date of issue it can also be found at
+   http://www.w3.org/2001/xml.xsd.
+   The schema document at that URI may however change in the future,
+   in order to remain compatible with the latest version of XML Schema
+   itself.  In other words, if the XML Schema namespace changes, the version
+   of this document at
+   http://www.w3.org/2001/xml.xsd will change
+   accordingly; the version at
+   http://www.w3.org/2001/03/xml.xsd will not change.
+  </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="lang" type="xs:language">
+        <xs:annotation>
+            <xs:documentation>In due course, we should install the relevant ISO 2- and 3-letter
+         codes as the enumerated possible values . . .</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+    <xs:attribute default="preserve" name="space">
+        <xs:simpleType>
+            <xs:restriction base="xs:NCName">
+                <xs:enumeration value="default"/>
+                <xs:enumeration value="preserve"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="base" type="xs:anyURI">
+        <xs:annotation>
+            <xs:documentation>See http://www.w3.org/TR/xmlbase/ for
+                     information about this attribute.</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+    <xs:attributeGroup name="specialAttrs">
+        <xs:attribute ref="xml:base"/>
+        <xs:attribute ref="xml:lang"/>
+        <xs:attribute ref="xml:space"/>
+    </xs:attributeGroup>
+</xs:schema><schema elementFormDefault="qualified" targetNamespace="http://www.w3.org/2000/09/xmldsig#" version="0.1" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.w3.org/2001/XMLSchema">
+    <simpleType name="CryptoBinary">
+        <restriction base="base64Binary"/>
+    </simpleType>
+    <element name="Signature" type="ds:SignatureType"/>
+    <complexType name="SignatureType">
+        <sequence>
+            <element ref="ds:SignedInfo"/>
+            <element ref="ds:SignatureValue"/>
+            <element minOccurs="0" ref="ds:KeyInfo"/>
+            <element maxOccurs="unbounded" minOccurs="0" ref="ds:Object"/>
+        </sequence>
+        <attribute name="Id" type="ID" use="optional"/>
+    </complexType>
+    <element name="SignatureValue" type="ds:SignatureValueType"/>
+    <complexType name="SignatureValueType">
+        <simpleContent>
+            <extension base="base64Binary">
+                <attribute name="Id" type="ID" use="optional"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+    <element name="SignedInfo" type="ds:SignedInfoType"/>
+    <complexType name="SignedInfoType">
+        <sequence>
+            <element ref="ds:CanonicalizationMethod"/>
+            <element ref="ds:SignatureMethod"/>
+            <element maxOccurs="unbounded" ref="ds:Reference"/>
+        </sequence>
+        <attribute name="Id" type="ID" use="optional"/>
+    </complexType>
+    <element name="CanonicalizationMethod" type="ds:CanonicalizationMethodType"/>
+    <complexType mixed="true" name="CanonicalizationMethodType">
+        <sequence>
+            <any maxOccurs="unbounded" minOccurs="0" namespace="##any"/>
+        </sequence>
+        <attribute name="Algorithm" type="anyURI" use="required"/>
+    </complexType>
+    <element name="SignatureMethod" type="ds:SignatureMethodType"/>
+    <complexType mixed="true" name="SignatureMethodType">
+        <sequence>
+            <element minOccurs="0" name="HMACOutputLength" type="ds:HMACOutputLengthType"/>
+            <any maxOccurs="unbounded" minOccurs="0" namespace="##other"/>
+        </sequence>
+        <attribute name="Algorithm" type="anyURI" use="required"/>
+    </complexType>
+    <element name="Reference" type="ds:ReferenceType"/>
+    <complexType name="ReferenceType">
+        <sequence>
+            <element minOccurs="0" ref="ds:Transforms"/>
+            <element ref="ds:DigestMethod"/>
+            <element ref="ds:DigestValue"/>
+        </sequence>
+        <attribute name="Id" type="ID" use="optional"/>
+        <attribute name="URI" type="anyURI" use="optional"/>
+        <attribute name="Type" type="anyURI" use="optional"/>
+    </complexType>
+    <element name="Transforms" type="ds:TransformsType"/>
+    <complexType name="TransformsType">
+        <sequence>
+            <element maxOccurs="unbounded" ref="ds:Transform"/>
+        </sequence>
+    </complexType>
+    <element name="Transform" type="ds:TransformType"/>
+    <complexType mixed="true" name="TransformType">
+        <choice maxOccurs="unbounded" minOccurs="0">
+            <any namespace="##other" processContents="lax"/>
+            <element name="XPath" type="string"/>
+        </choice>
+        <attribute name="Algorithm" type="anyURI" use="required"/>
+    </complexType>
+    <element name="DigestMethod" type="ds:DigestMethodType"/>
+    <complexType mixed="true" name="DigestMethodType">
+        <sequence>
+            <any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </sequence>
+        <attribute name="Algorithm" type="anyURI" use="required"/>
+    </complexType>
+    <element name="DigestValue" type="ds:DigestValueType"/>
+    <simpleType name="DigestValueType">
+        <restriction base="base64Binary"/>
+    </simpleType>
+    <element name="KeyInfo" type="ds:KeyInfoType"/>
+    <complexType mixed="true" name="KeyInfoType">
+        <choice maxOccurs="unbounded">
+            <element ref="ds:KeyName"/>
+            <element ref="ds:KeyValue"/>
+            <element ref="ds:RetrievalMethod"/>
+            <element ref="ds:X509Data"/>
+            <element ref="ds:PGPData"/>
+            <element ref="ds:SPKIData"/>
+            <element ref="ds:MgmtData"/>
+            <any namespace="##other" processContents="lax"/>
+        </choice>
+        <attribute name="Id" type="ID" use="optional"/>
+    </complexType>
+    <element name="KeyName" type="string"/>
+    <element name="MgmtData" type="string"/>
+    <element name="KeyValue" type="ds:KeyValueType"/>
+    <complexType mixed="true" name="KeyValueType">
+        <choice>
+            <element ref="ds:DSAKeyValue"/>
+            <element ref="ds:RSAKeyValue"/>
+            <any namespace="##other" processContents="lax"/>
+        </choice>
+    </complexType>
+    <element name="RetrievalMethod" type="ds:RetrievalMethodType"/>
+    <complexType name="RetrievalMethodType">
+        <sequence>
+            <element minOccurs="0" ref="ds:Transforms"/>
+        </sequence>
+        <attribute name="URI" type="anyURI"/>
+        <attribute name="Type" type="anyURI" use="optional"/>
+    </complexType>
+    <element name="X509Data" type="ds:X509DataType"/>
+    <complexType name="X509DataType">
+        <sequence maxOccurs="unbounded">
+            <choice>
+                <element name="X509IssuerSerial" type="ds:X509IssuerSerialType"/>
+                <element name="X509SKI" type="base64Binary"/>
+                <element name="X509SubjectName" type="string"/>
+                <element name="X509Certificate" type="base64Binary"/>
+                <element name="X509CRL" type="base64Binary"/>
+                <any namespace="##other" processContents="lax"/>
+            </choice>
+        </sequence>
+    </complexType>
+    <complexType name="X509IssuerSerialType">
+        <sequence>
+            <element name="X509IssuerName" type="string"/>
+            <element name="X509SerialNumber" type="integer"/>
+        </sequence>
+    </complexType>
+    <element name="PGPData" type="ds:PGPDataType"/>
+    <complexType name="PGPDataType">
+        <choice>
+            <sequence>
+                <element name="PGPKeyID" type="base64Binary"/>
+                <element minOccurs="0" name="PGPKeyPacket" type="base64Binary"/>
+                <any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+            </sequence>
+            <sequence>
+                <element name="PGPKeyPacket" type="base64Binary"/>
+                <any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+            </sequence>
+        </choice>
+    </complexType>
+    <element name="SPKIData" type="ds:SPKIDataType"/>
+    <complexType name="SPKIDataType">
+        <sequence maxOccurs="unbounded">
+            <element name="SPKISexp" type="base64Binary"/>
+            <any minOccurs="0" namespace="##other" processContents="lax"/>
+        </sequence>
+    </complexType>
+    <element name="Object" type="ds:ObjectType"/>
+    <complexType mixed="true" name="ObjectType">
+        <sequence maxOccurs="unbounded" minOccurs="0">
+            <any namespace="##any" processContents="lax"/>
+        </sequence>
+        <attribute name="Id" type="ID" use="optional"/>
+        <attribute name="MimeType" type="string" use="optional"/>
+        <attribute name="Encoding" type="anyURI" use="optional"/>
+    </complexType>
+    <element name="Manifest" type="ds:ManifestType"/>
+    <complexType name="ManifestType">
+        <sequence>
+            <element maxOccurs="unbounded" ref="ds:Reference"/>
+        </sequence>
+        <attribute name="Id" type="ID" use="optional"/>
+    </complexType>
+    <element name="SignatureProperties" type="ds:SignaturePropertiesType"/>
+    <complexType name="SignaturePropertiesType">
+        <sequence>
+            <element maxOccurs="unbounded" ref="ds:SignatureProperty"/>
+        </sequence>
+        <attribute name="Id" type="ID" use="optional"/>
+    </complexType>
+    <element name="SignatureProperty" type="ds:SignaturePropertyType"/>
+    <complexType mixed="true" name="SignaturePropertyType">
+        <choice maxOccurs="unbounded">
+            <any namespace="##other" processContents="lax"/>
+        </choice>
+        <attribute name="Target" type="anyURI" use="required"/>
+        <attribute name="Id" type="ID" use="optional"/>
+    </complexType>
+    <simpleType name="HMACOutputLengthType">
+        <restriction base="integer"/>
+    </simpleType>
+    <element name="DSAKeyValue" type="ds:DSAKeyValueType"/>
+    <complexType name="DSAKeyValueType">
+        <sequence>
+            <sequence minOccurs="0">
+                <element name="P" type="ds:CryptoBinary"/>
+                <element name="Q" type="ds:CryptoBinary"/>
+            </sequence>
+            <element minOccurs="0" name="G" type="ds:CryptoBinary"/>
+            <element name="Y" type="ds:CryptoBinary"/>
+            <element minOccurs="0" name="J" type="ds:CryptoBinary"/>
+            <sequence minOccurs="0">
+                <element name="Seed" type="ds:CryptoBinary"/>
+                <element name="PgenCounter" type="ds:CryptoBinary"/>
+            </sequence>
+        </sequence>
+    </complexType>
+    <element name="RSAKeyValue" type="ds:RSAKeyValueType"/>
+    <complexType name="RSAKeyValueType">
+        <sequence>
+            <element name="Modulus" type="ds:CryptoBinary"/>
+            <element name="Exponent" type="ds:CryptoBinary"/>
+        </sequence>
+    </complexType>
+</schema></wsdl:types>
+    <wsdl:message name="createShipmentRequest">
+        <wsdl:part element="tns:createShipmentRequest" name="createShipmentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="createShipmentResponse">
+        <wsdl:part element="tns:createShipmentResponse" name="createShipmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="printLabelRequest">
+        <wsdl:part element="tns:printLabelRequest" name="printLabelRequest"/>
+    </wsdl:message>
+    <wsdl:message name="printLabelResponse">
+        <wsdl:part element="tns:printLabelResponse" name="printLabelResponse"/>
+    </wsdl:message>
+    <wsdl:message name="createManifestRequest">
+        <wsdl:part element="tns:createManifestRequest" name="createManifestRequest"/>
+    </wsdl:message>
+    <wsdl:message name="createManifestResponse">
+        <wsdl:part element="tns:createManifestResponse" name="createManifestResponse"/>
+    </wsdl:message>
+    <wsdl:message name="printManifestRequest">
+        <wsdl:part element="tns:printManifestRequest" name="printManifestRequest"/>
+    </wsdl:message>
+    <wsdl:message name="printManifestResponse">
+        <wsdl:part element="tns:printManifestResponse" name="printManifestResponse"/>
+    </wsdl:message>
+    <wsdl:message name="updateShipmentRequest">
+        <wsdl:part element="tns:updateShipmentRequest" name="updateShipmentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="updateShipmentResponse">
+        <wsdl:part element="tns:updateShipmentResponse" name="updateShipmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cancelShipmentRequest">
+        <wsdl:part element="tns:cancelShipmentRequest" name="cancelShipmentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="cancelShipmentResponse">
+        <wsdl:part element="tns:cancelShipmentResponse" name="cancelShipmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="printDocumentRequest">
+        <wsdl:part element="tns:printDocumentRequest" name="printDocumentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="printDocumentResponse">
+        <wsdl:part element="tns:printDocumentResponse" name="printDocumentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="request1DRangesRequest">
+        <wsdl:part element="tns:request1DRangesRequest" name="request1DRangesRequest"/>
+    </wsdl:message>
+    <wsdl:message name="request1DRangesResponse">
+        <wsdl:part element="tns:request1DRangesResponse" name="request1DRangesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="request2DItemIDRangeRequest">
+        <wsdl:part element="tns:request2DItemIDRangeRequest" name="request2DItemIDRangeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="request2DItemIDRangeResponse">
+        <wsdl:part element="tns:request2DItemIDRangeResponse" name="request2DItemIDRangeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="securityHeader">
+        <wsdl:part element="wsse:Security" name="security"/>
+    </wsdl:message>
+    <wsdl:message name="faultResponse">
+        <wsdl:part element="tns:exceptionDetails" name="faultResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="shippingAPIPortType">
+        <wsdl:operation name="createShipment" parameterOrder="createShipmentRequest">
+            <wsdl:input message="tns:createShipmentRequest"/>
+            <wsdl:output message="tns:createShipmentResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="printLabel" parameterOrder="printLabelRequest">
+            <wsdl:input message="tns:printLabelRequest"/>
+            <wsdl:output message="tns:printLabelResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="createManifest" parameterOrder="createManifestRequest">
+            <wsdl:input message="tns:createManifestRequest"/>
+            <wsdl:output message="tns:createManifestResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="printManifest" parameterOrder="printManifestRequest">
+            <wsdl:input message="tns:printManifestRequest"/>
+            <wsdl:output message="tns:printManifestResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateShipment" parameterOrder="updateShipmentRequest">
+            <wsdl:input message="tns:updateShipmentRequest"/>
+            <wsdl:output message="tns:updateShipmentResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cancelShipment" parameterOrder="cancelShipmentRequest">
+            <wsdl:input message="tns:cancelShipmentRequest"/>
+            <wsdl:output message="tns:cancelShipmentResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="printDocument" parameterOrder="printDocumentRequest">
+            <wsdl:input message="tns:printDocumentRequest"/>
+            <wsdl:output message="tns:printDocumentResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="request1DRanges" parameterOrder="request1DRangesRequest">
+            <wsdl:input message="tns:request1DRangesRequest"/>
+            <wsdl:output message="tns:request1DRangesResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="request2DItemIDRange" parameterOrder="request2DItemIDRangeRequest">
+            <wsdl:input message="tns:request2DItemIDRangeRequest"/>
+            <wsdl:output message="tns:request2DItemIDRangeResponse"/>
+            <wsdl:fault message="tns:faultResponse" name="faultResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="shippingAPISoapBinding" type="tns:shippingAPIPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createShipment">
+            <soap:operation soapAction="createShipment" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="printLabel">
+            <soap:operation soapAction="printLabel" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createManifest">
+            <soap:operation soapAction="createManifest" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="printManifest">
+            <soap:operation soapAction="printManifest" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateShipment">
+            <soap:operation soapAction="updateShipment" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="cancelShipment">
+            <soap:operation soapAction="cancelShipment" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="printDocument">
+            <soap:operation soapAction="printDocument" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="request1DRanges">
+            <soap:operation soapAction="request1DRanges" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="request2DItemIDRange">
+            <soap:operation soapAction="request2DItemIDRange" style="document"/>
+            <wsdl:input>
+                <soap:header message="tns:securityHeader" part="security" use="literal"/>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="faultResponse">
+                <soap:fault name="faultResponse" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="shippingAPI">
+        <wsdl:port binding="tns:shippingAPISoapBinding" name="shippingAPIPort">
+            <soap:address location="https://api.eu.apim.ibmcloud.com/royalmail/live/shipping/v2"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
